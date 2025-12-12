@@ -39,7 +39,7 @@ class MDUIBuilder(ctk.CTk):
         # Status bar for copy/paste feedback
         self.status_var = ctk.StringVar()
         self.status_bar = ctk.CTkLabel(self, textvariable=self.status_var, height=20, anchor="w")
-        self.status_bar.grid(row=1, column=0, columnspan=3, sticky="ew")
+        self.status_bar.grid(row=2, column=0, columnspan=3, sticky="ew", padx=5, pady=(0, 5))
         self.status_var.set("Ready")
         
     def setup_ui(self):
