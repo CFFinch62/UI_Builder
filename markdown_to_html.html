@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backgammon UI - From Markdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+
+        #app-container {
+            position: relative;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            position: absolute;
+            border: 2px solid #333;
+            background: #ffffff;
+            display: flex;
+        }
+
+        .container.vertical {
+            flex-direction: column;
+        }
+
+        .container.horizontal {
+            flex-direction: row;
+        }
+
+        .container-label {
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            font-size: 10px;
+            font-weight: bold;
+            color: #666;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1px 3px;
+            border-radius: 2px;
+            z-index: 10;
+        }
+
+        .element {
+            position: absolute;
+            border: 1px solid #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .element.Button {
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .element.Label {
+            background: #f9f9f9;
+            color: #333;
+            font-weight: bold;
+            border: 1px solid #ccc;
+        }
+
+        .element.Image {
+            background: #e0e0e0;
+            color: #666;
+            font-style: italic;
+            border: 1px dashed #999;
+        }
+
+        .element.TextBox {
+            background: white;
+            border: 1px solid #999;
+            padding: 5px;
+        }
+
+        #info-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #info-panel h3 {
+            margin-bottom: 10px;
+        }
+
+        #markdown-input {
+            width: 100%;
+            height: 400px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .stat-box {
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
+        .stat-box .label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Backgammon UI - Generated from Markdown</h1>
+    <p>This UI was automatically generated from the markdown file.</p>
+
+    <div id="app-container"></div>
+
+    <div id="info-panel">
+        <h3>📊 UI Statistics</h3>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number" id="container-count">0</div>
+                <div class="label">Containers</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="element-count">0</div>
+                <div class="label">Elements</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="total-count">0</div>
+                <div class="label">Total Items</div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 20px;">📝 Markdown Source</h3>
+        <textarea id="markdown-input" readonly></textarea>
+        <button onclick="location.reload()">🔄 Reload</button>
+    </div>
+
+    <script>
+        // Embedded markdown content (to avoid CORS issues with local files)
+        const MARKDOWN_CONTENT = `# UI Layout: My UI Design
+
+## Container: MainWindow
+- Type: Container
+- Orientation: vertical
+- Width: 800
+- Height: 600
+- Position: (0, 0)
+- Padding: 10
+- Background: #ffffff
+
+### Container: Score_Control_Area
+- Type: Container
+- Orientation: vertical
+- Width: 200
+- Height: 500
+- Position: (20, 80)
+- Padding: 10
+- Background: #ffffff
+
+#### Container: Human_Score
+- Type: Container
+- Orientation: vertical
+- Width: 180
+- Height: 120
+- Position: (10, 20)
+- Padding: 10
+- Background: #ffffff
+
+##### Element: Human_Player
+- Type: Label
+- Text: "HUMAN PLAYER"
+- Width: 160
+- Height: 20
+- Position: (10, 10)
+- Enabled: true
+- Visible: true
+
+##### Element: Image8
+- Type: Image
+- Text: "Image8"
+- Width: 100
+- Height: 30
+- Position: (12, 40)
+- Enabled: true
+- Visible: true
+
+
+#### Container: AI_Score
+- Type: Container
+- Orientation: vertical
+- Width: 180
+- Height: 120
+- Position: (10, 360)
+- Padding: 10
+- Background: #ffffff
+
+#### Container: Controls
+- Type: Container
+- Orientation: vertical
+- Width: 180
+- Height: 200
+- Position: (10, 150)
+- Padding: 10
+- Background: #ffffff
+
+##### Element: Die1
+- Type: Image
+- Text: "Image2"
+- Width: 40
+- Height: 40
+- Position: (40, 20)
+- Enabled: true
+- Visible: true
+
+##### Element: Die2
+- Type: Image
+- Text: "Image3"
+- Width: 40
+- Height: 40
+- Position: (100, 20)
+- Enabled: true
+- Visible: true
+
+##### Element: Roll_Button
+- Type: Button
+- Text: "ROLL DICE"
+- Width: 120
+- Height: 20
+- Position: (28, 70)
+- Enabled: true
+- Visible: true
+
+##### Element: Undo_Button
+- Type: Button
+- Text: "UNDO MOVE"
+- Width: 120
+- Height: 20
+- Position: (29, 100)
+- Enabled: true
+- Visible: true
+
+##### Element: EndTurn_Button
+- Type: Button
+- Text: "END TURN"
+- Width: 120
+- Height: 20
+- Position: (30, 130)
+- Enabled: true
+- Visible: true
+
+##### Element: Double_Cube
+- Type: Image
+- Text: "64"
+- Width: 40
+- Height: 30
+- Position: (66, 162)
+- Enabled: true
+- Visible: true
+
+
+
+### Container: Title_Banner
+- Type: Container
+- Orientation: horizontal
+- Width: 760
+- Height: 40
+- Position: (20, 20)
+- Padding: 10
+- Background: #ffffff
+
+### Container: Board_Main
+- Type: Container
+- Orientation: vertical
+- Width: 450
+- Height: 450
+- Position: (240, 80)
+- Padding: 10
+- Background: #ffffff
+
+#### Container: Upper_Outer
+- Type: Container
+- Orientation: vertical
+- Width: 180
+- Height: 200
+- Position: (20, 20)
+- Padding: 10
+- Background: #ffffff
+
+#### Container: Lower_Outer
+- Type: Container
+- Orientation: vertical
+- Width: 180
+- Height: 200
+- Position: (20, 230)
+- Padding: 10
+- Background: #ffffff
+
+#### Container: Upper_Inner
+- Type: Container
+- Orientation: vertical
+- Width: 180
+- Height: 200
+- Position: (250, 20)
+- Padding: 10
+- Background: #ffffff
+
+#### Container: Lower_Inner
+- Type: Container
+- Orientation: vertical
+- Width: 180
+- Height: 200
+- Position: (250, 230)
+- Padding: 10
+- Background: #ffffff
+
+#### Container: Bar
+- Type: Container
+- Orientation: vertical
+- Width: 30
+- Height: 410
+- Position: (210, 20)
+- Padding: 10
+- Background: #ffffff
+
+
+### Container: BearOffArea_Black
+- Type: Container
+- Orientation: vertical
+- Width: 80
+- Height: 220
+- Position: (700, 80)
+- Padding: 10
+- Background: #ffffff
+
+### Container: Message_Area
+- Type: Container
+- Orientation: vertical
+- Width: 540
+- Height: 40
+- Position: (240, 540)
+- Padding: 10
+- Background: #ffffff
+
+### Container: BearOffArea_White
+- Type: Container
+- Orientation: vertical
+- Width: 80
+- Height: 220
+- Position: (700, 310)
+- Padding: 10
+- Background: #ffffff
+`;
+
+        // Parse markdown and build UI
+        function loadAndRenderUI() {
+            try {
+                // Use embedded markdown content
+                const markdown = MARKDOWN_CONTENT;
+
+                // Show markdown in textarea
+                document.getElementById('markdown-input').value = markdown;
+
+                // Parse the markdown
+                const uiData = parseMarkdown(markdown);
+
+                // Render the UI
+                renderUI(uiData);
+
+            } catch (error) {
+                console.error('Error loading UI:', error);
+                alert('Error rendering UI: ' + error.message);
+            }
+        }
+
+        function parseMarkdown(markdown) {
+            const lines = markdown.split('\n');
+            const root = { type: 'root', children: [] };
+            const stack = [root];
+            let currentItem = null;
+            
+            for (let line of lines) {
+                line = line.trim();
+                if (!line) continue;
+                
+                // Detect heading level
+                const headingMatch = line.match(/^(#{2,6})\s+(Container|Element):\s+(.+)/);
+                if (headingMatch) {
+                    const level = headingMatch[1].length;
+                    const type = headingMatch[2];
+                    const name = headingMatch[3];
+                    
+                    currentItem = {
+                        type: type.toLowerCase(),
+                        name: name,
+                        level: level,
+                        children: []
+                    };
+                    
+                    // Find parent based on level
+                    while (stack.length > 1 && stack[stack.length - 1].level >= level) {
+                        stack.pop();
+                    }
+                    
+                    stack[stack.length - 1].children.push(currentItem);
+                    stack.push(currentItem);
+                    
+                } else if (line.startsWith('- ') && currentItem) {
+                    // Parse property
+                    const propMatch = line.match(/^-\s+([^:]+):\s+(.+)/);
+                    if (propMatch) {
+                        const key = propMatch[1].trim();
+                        let value = propMatch[2].trim();
+                        
+                        // Remove quotes
+                        value = value.replace(/^"(.*)"$/, '$1');
+                        
+                        // Parse position
+                        if (key === 'Position') {
+                            const posMatch = value.match(/\((\d+),\s*(\d+)\)/);
+                            if (posMatch) {
+                                currentItem.x = parseInt(posMatch[1]);
+                                currentItem.y = parseInt(posMatch[2]);
+                            }
+                        } else if (key === 'Width') {
+                            currentItem.width = parseInt(value);
+                        } else if (key === 'Height') {
+                            currentItem.height = parseInt(value);
+                        } else if (key === 'Orientation') {
+                            currentItem.orientation = value;
+                        } else if (key === 'Background') {
+                            currentItem.background = value;
+                        } else if (key === 'Text') {
+                            currentItem.text = value;
+                        } else if (key === 'Type' && currentItem.type === 'element') {
+                            currentItem.elementType = value;
+                        }
+                    }
+                }
+            }
+            
+            return root.children[0]; // Return MainWindow
+        }
+
+        function renderUI(uiData) {
+            const container = document.getElementById('app-container');
+            container.innerHTML = '';
+            
+            // Set container size
+            container.style.width = uiData.width + 'px';
+            container.style.height = uiData.height + 'px';
+            
+            let containerCount = 0;
+            let elementCount = 0;
+            
+            // Render recursively
+            function renderItem(item, parentEl = container, isRoot = false) {
+                if (item.type === 'container') {
+                    containerCount++;
+
+                    const div = document.createElement('div');
+                    div.className = 'container ' + (item.orientation || 'vertical');
+
+                    // For root container, use absolute positioning from (0,0)
+                    // For child containers, positions are relative to parent
+                    div.style.left = (item.x || 0) + 'px';
+                    div.style.top = (item.y || 0) + 'px';
+                    div.style.width = item.width + 'px';
+                    div.style.height = item.height + 'px';
+                    if (item.background) {
+                        div.style.background = item.background;
+                    }
+
+                    // Add label
+                    const label = document.createElement('div');
+                    label.className = 'container-label';
+                    label.textContent = item.name;
+                    div.appendChild(label);
+
+                    parentEl.appendChild(div);
+
+                    // Render children - pass the container div as parent
+                    // Children positions are relative to this container
+                    if (item.children) {
+                        for (let child of item.children) {
+                            renderItem(child, div, false);
+                        }
+                    }
+
+                } else if (item.type === 'element') {
+                    elementCount++;
+
+                    const div = document.createElement('div');
+                    div.className = 'element ' + (item.elementType || 'Label');
+
+                    // Element positions are relative to their parent container
+                    div.style.left = (item.x || 0) + 'px';
+                    div.style.top = (item.y || 0) + 'px';
+                    div.style.width = item.width + 'px';
+                    div.style.height = item.height + 'px';
+                    div.textContent = item.text || item.name;
+
+                    parentEl.appendChild(div);
+                }
+            }
+            
+            renderItem(uiData, container, true);
+            
+            // Update stats
+            document.getElementById('container-count').textContent = containerCount;
+            document.getElementById('element-count').textContent = elementCount;
+            document.getElementById('total-count').textContent = containerCount + elementCount;
+        }
+
+        // Load on page load
+        loadAndRenderUI();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,292 @@
+{
+  "name": "My UI Design",
+  "root_container": {
+    "type": "container",
+    "name": "MainWindow",
+    "x": 0,
+    "y": 0,
+    "width": 800,
+    "height": 600,
+    "orientation": "vertical",
+    "padding": 10,
+    "background": "#ffffff",
+    "children": [
+      {
+        "type": "container",
+        "name": "Score_Control_Area",
+        "x": 20,
+        "y": 80,
+        "width": 200,
+        "height": 500,
+        "orientation": "vertical",
+        "padding": 10,
+        "background": "#ffffff",
+        "children": [
+          {
+            "type": "container",
+            "name": "Human_Score",
+            "x": 10,
+            "y": 20,
+            "width": 180,
+            "height": 120,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": [
+              {
+                "type": "element",
+                "element_type": "Label",
+                "name": "Human_Player",
+                "x": 10,
+                "y": 10,
+                "width": 160,
+                "height": 20,
+                "text": "HUMAN PLAYER",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              },
+              {
+                "type": "element",
+                "element_type": "Image",
+                "name": "Image8",
+                "x": 12,
+                "y": 40,
+                "width": 100,
+                "height": 30,
+                "text": "Image8",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "name": "AI_Score",
+            "x": 10,
+            "y": 360,
+            "width": 180,
+            "height": 120,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": []
+          },
+          {
+            "type": "container",
+            "name": "Controls",
+            "x": 10,
+            "y": 150,
+            "width": 180,
+            "height": 200,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": [
+              {
+                "type": "element",
+                "element_type": "Image",
+                "name": "Die1",
+                "x": 40,
+                "y": 20,
+                "width": 40,
+                "height": 40,
+                "text": "Image2",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              },
+              {
+                "type": "element",
+                "element_type": "Image",
+                "name": "Die2",
+                "x": 100,
+                "y": 20,
+                "width": 40,
+                "height": 40,
+                "text": "Image3",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              },
+              {
+                "type": "element",
+                "element_type": "Button",
+                "name": "Roll_Button",
+                "x": 28,
+                "y": 70,
+                "width": 120,
+                "height": 20,
+                "text": "ROLL DICE",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              },
+              {
+                "type": "element",
+                "element_type": "Button",
+                "name": "Undo_Button",
+                "x": 29,
+                "y": 100,
+                "width": 120,
+                "height": 20,
+                "text": "UNDO MOVE",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              },
+              {
+                "type": "element",
+                "element_type": "Button",
+                "name": "EndTurn_Button",
+                "x": 30,
+                "y": 130,
+                "width": 120,
+                "height": 20,
+                "text": "END TURN",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              },
+              {
+                "type": "element",
+                "element_type": "Image",
+                "name": "Double_Cube",
+                "x": 66,
+                "y": 162,
+                "width": 40,
+                "height": 30,
+                "text": "64",
+                "enabled": true,
+                "visible": true,
+                "properties": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "container",
+        "name": "Title_Banner",
+        "x": 20,
+        "y": 20,
+        "width": 760,
+        "height": 40,
+        "orientation": "horizontal",
+        "padding": 10,
+        "background": "#ffffff",
+        "children": []
+      },
+      {
+        "type": "container",
+        "name": "Board_Main",
+        "x": 240,
+        "y": 80,
+        "width": 450,
+        "height": 450,
+        "orientation": "vertical",
+        "padding": 10,
+        "background": "#ffffff",
+        "children": [
+          {
+            "type": "container",
+            "name": "Upper_Outer",
+            "x": 20,
+            "y": 20,
+            "width": 180,
+            "height": 200,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": []
+          },
+          {
+            "type": "container",
+            "name": "Lower_Outer",
+            "x": 20,
+            "y": 230,
+            "width": 180,
+            "height": 200,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": []
+          },
+          {
+            "type": "container",
+            "name": "Upper_Inner",
+            "x": 250,
+            "y": 20,
+            "width": 180,
+            "height": 200,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": []
+          },
+          {
+            "type": "container",
+            "name": "Lower_Inner",
+            "x": 250,
+            "y": 230,
+            "width": 180,
+            "height": 200,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": []
+          },
+          {
+            "type": "container",
+            "name": "Bar",
+            "x": 210,
+            "y": 20,
+            "width": 30,
+            "height": 410,
+            "orientation": "vertical",
+            "padding": 10,
+            "background": "#ffffff",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "container",
+        "name": "BearOffArea_Black",
+        "x": 700,
+        "y": 80,
+        "width": 80,
+        "height": 220,
+        "orientation": "vertical",
+        "padding": 10,
+        "background": "#ffffff",
+        "children": []
+      },
+      {
+        "type": "container",
+        "name": "Message_Area",
+        "x": 240,
+        "y": 540,
+        "width": 540,
+        "height": 40,
+        "orientation": "vertical",
+        "padding": 10,
+        "background": "#ffffff",
+        "children": []
+      },
+      {
+        "type": "container",
+        "name": "BearOffArea_White",
+        "x": 700,
+        "y": 310,
+        "width": 80,
+        "height": 220,
+        "orientation": "vertical",
+        "padding": 10,
+        "background": "#ffffff",
+        "children": []
+      }
+    ]
+  }
+}
